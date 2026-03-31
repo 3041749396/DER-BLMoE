@@ -2,7 +2,7 @@
 This repository contains the source code for the paper "Robust and Efficient Specific Emitter Identification via Broad Learning-Based Mixture of Experts" for your reference.
 ## 🚀 Usage Guidelines
 
-1. **Download the Dataset:** The original ADS-B dataset can be downloaded from this link: `[[[Insert Link Here](https://gitee.com/heu-linyun/Codes)]]`
+1. **Download the Dataset:** The original ADS-B dataset can be downloaded from this link: `https://gitee.com/heu-linyun/Codes`
 
 2. **Data Preprocessing:** Please place the original ADS-B dataset into the `source` folder, and then run the `process.mlx` file in MATLAB to perform initial preprocessing. This step includes signal smoothing, complex baseband signal construction, DC removal (de-biasing), amplitude normalization, and splitting/concatenation. The preprocessed ADS-B dataset will be automatically saved in the `Datasets` folder.
 
