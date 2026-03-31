@@ -6,7 +6,7 @@ This repository contains the source code for the paper "Robust and Efficient Spe
 
 2. **Data Preprocessing:** Please place the original ADS-B dataset into the `source` folder, and then run the `process.mlx` file in MATLAB to perform initial preprocessing. This step includes signal smoothing, complex baseband signal construction, DC removal (de-biasing), amplitude normalization, and splitting/concatenation. The preprocessed ADS-B dataset will be automatically saved in the `Datasets` folder.
 
-3. **Configuration:** You can navigate to the `config/config_moe_bls.py`to customize various hyperparameters, such as the dataset name, number of classes, number of experts, and number of feature windows. Please adjust these parameters according to your specific needs before running the code. 
+3. **Configuration:** You can navigate to the `configs/config_moe_bls.py`to customize various hyperparameters, such as the dataset name, number of classes, number of experts, and number of feature windows. Please adjust these parameters according to your specific needs before running the code. 
    > **Note:** The default parameter settings in this repository are identical to those used in the original paper. If your goal is to reproduce the results presented in the paper, we recommend keeping the default settings unchanged.
 
 4. **Running the Experiments:** * First, run `experiments/exp_train.py` to train the model and generate the corresponding model files. 
