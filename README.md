@@ -7,6 +7,8 @@ Official code for **DER-BLMoE**, proposed in the paper:
 
 DER-BLMoE is a broad-learning-based mixture-of-experts framework for specific emitter identification (SEI). The implementation uses raw ADS-B I/Q samples, computes STFT sub-band features in Python, trains BLS experts for different frequency bands, and fuses expert predictions with a dynamic entropy residual gate.
 
+📬 For more research details or academic discussion, please feel free to contact me via email: `1225014125@njupt.edu.cn`.
+
 ## Repository Structure 🧭
 
 ```text
