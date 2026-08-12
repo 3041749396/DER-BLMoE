@@ -1,0 +1,61 @@
+# 分布式网络压缩RL配置文件
+
+# 数据集配置
+dataset:
+  name: ads-b  # 数据集名称: ads-b
+  data_dir: ./data/ADS  # ADS-B数据存储目录
+  batch_size: 128  # 批次大小
+  num_workers: 4  # 数据加载线程数
+
+# 模型配置
+model:
+  num_classes: 100  # ADS-B数据集类别数，根据实际情况调整100
+  checkpoint_path: null  # 预训练模型路径，如果为null则随机初始化
+
+# 压缩配置
+compression:
+  target_accuracy: 0.9  # 目标精度比例（相对于原始模型）
+  target_compression: 0.8  # 目标压缩比例
+  
+  # 奖励函数权重
+  reward_weights:
+    accuracy: 1.0  # 精度权重
+    model_size: 0.5  # 模型大小权重
+    inference_time: 0.5  # 推理时间权重
+
+# RL训练配置
+rl:
+  num_episodes: 100 # 训练轮数
+  gamma: 0.99  # 折扣因子
+  lr: 0.003  # 学习率
+  clip_ratio: 0.2  # PPO裁剪比例
+  value_coef: 0.5  # 价值损失系数
+  entropy_coef: 0.01  # 熵正则化系数
+  batch_size: 64  # 批次大小
+  update_epochs: 10  # 每次更新的轮数
+  
+  # 动作空间
+  action_space:
+    prune_ratios: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]  # 剪枝比例选项
+    convert_options: [0, 1]  # 转换选项: 0=不转换, 1=转换
+
+# 输出配置
+output:
+  save_dir: ./results  # 结果保存目录
+  save_interval: 100  # 保存间隔（轮数）
+  log_interval: 10  # 日志间隔（轮数）
+  visualize: true  # 是否可视化结果
+
+# 分布式训练配置
+distributed:
+  enabled: true  # 是否启用分布式训练
+  backend: "nccl"  # 后端类型 (nccl推荐用于GPU, gloo用于CPU)
+  num_processes: -1  # 进程数量 (-1表示使用所有可用GPU)
+  init_method: "env://"  # 初始化方法
+  world_size: -1  # 世界大小 (-1表示自动检测)
+  gpu_parallel: true  # 是否启用GPU并行
+  sync_bn: true  # 是否使用同步批归一化
+  parallel_mode: "ddp"  # 并行模式 (dp=DataParallel, ddp=DistributedDataParallel)
+  rl_parallel: true  # 是否对RL训练进行并行化
+  master_addr: "localhost"  # 主节点地址
+  master_port: "29500"  # 主节点端口 
